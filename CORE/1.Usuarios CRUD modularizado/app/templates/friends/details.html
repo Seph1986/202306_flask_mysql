@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %} Editar Usuario {% endblock %}
+
+{% block content %}
+
+<div class="container mt-4 col-8 text-white" style="background-color: #00003d; height: 60vh;">
+
+    <div class="container mt-4 col-10">
+        <div class="d-flex justify-content-around align-items-center">
+
+            <h1 class="mb-3 mt-4">Usuario {{friend.id}}</h1>
+            <a class="btn btn-primary mt-3 fw-medium" href="/friends/">Volver al Inicio</a>
+        </div>
+        <hr>
+        <div class="p-4 col-7 border border-dark bg-white text-black">
+            <h3>Nombre Completo: <span class="fw-normal">
+                {{friend.first_name}} {{friend.last_name}}
+                </span>
+            </h3>
+            <h3>Ocupación: <span class="fw-normal">
+                {{friend.occupation}}
+                </span>
+            </h3>
+            <h3>Creado el: <span class="fw-normal">
+                {{friend.created_at}}
+                </span>
+            </h3>
+            <h3>Actualizado el: <span class="fw-normal">
+                {{friend.updated_at}}
+                </span>
+            </h3>
+        </div>
+        <div class="mt-4">
+            <a class="btn btn-primary fw-medium " href="/friends/edit/{{friend.id}}">Editar</a> |
+            <a class="btn btn-primary fw-medium" href="#">Eliminar</a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
