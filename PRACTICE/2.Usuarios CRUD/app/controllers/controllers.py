@@ -92,6 +92,16 @@ def show_details(id):
 @app.route("/friends/edit/<int:id>")
 def edit_friend(id):
 
+    """
+    Función que muestra el formulario de edición de un amigo.
+
+    Parámetros:
+        id (int): El ID del amigo a editar.
+
+    Retorna:
+        template (render_template): Renderiza la plantilla "/friends/edit.html" con los datos del amigo a editar.
+    """
+
     data = {
         "id": id
     }
@@ -101,8 +111,19 @@ def edit_friend(id):
 
     return render_template("/friends/edit.html", friend = friend)
 
+
 @app.route("/friends/edit/process/<int:id>/", methods=["POST"])
 def process_form(id):
+
+    """
+    Función que procesa el formulario de edición de un usuario.
+
+    Parámetros:
+        id (int): El ID del usuario a editar.
+
+    Retorna:
+        redirecciona (redirect): Redirecciona al usuario a la página "/friends/" después de editar al usuario.
+    """
 
     edited_values = request.form
 
@@ -119,8 +140,19 @@ def process_form(id):
 
     return redirect("/friends/")
 
+
 @app.route("/friends/delete/<int:id>/")
 def delete_user(id):
+
+    """
+    Función que borra un usuario con el id proporcionado.
+    
+    Parámetros:
+        id (int): El ID del usuario a borrar.
+    
+    Retorna:
+        redirecciona (redirect): Redirecciona al usuario a la página "/friends/" después de borrar al usuario.
+    """
 
     data = {
         "id" : id

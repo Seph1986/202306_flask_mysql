@@ -71,6 +71,16 @@ class User:
     
     @classmethod
     def edit_user(cls,data):
+
+        """
+        Método de clase que realiza la edición de un usuario en la base de datos.
+
+        Parámetros:
+            data (dict): Un diccionario con los datos del usuario a editar. Debe contener claves "id", "first_name", "last_name", "occupation".
+
+        Retorna:
+            query_db (connectToMySQL("first_flask").query_db): Ejecuta una consulta SQL para actualizar los datos del usuario en la tabla "friends".
+        """
         
         query = """UPDATE friends SET first_name = %(first_name)s, 
         last_name = %(last_name)s , occupation = %(occupation)s, 
@@ -80,6 +90,16 @@ class User:
     
     @classmethod
     def delete_user(cls,data):
+
+        """
+         Método de clase que elimina un usuario de la base de datos.
+
+        Parámetros:
+            data (dict): Un diccionario con los datos del usuario a eliminar. Debe contener una clave "id" con el ID del usuario.
+
+        Retorna:
+            query_db (connectToMySQL("first_flask").query_db): Ejecuta una consulta SQL para eliminar el usuario de la tabla "friends".
+        """
         
         query = "DELETE FROM friends WHERE id = %(id)s"
 
