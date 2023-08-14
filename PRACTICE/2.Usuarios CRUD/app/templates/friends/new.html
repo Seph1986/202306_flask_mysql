@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %} Agregar Usuario {% endblock %}
+
+{% block content %}
+
+<div class="container mt-4 col-8 text-white" style="background-color: #00003d; height: 52vh;">
+    <div class="container col-10 text-center">
+        <div class="d-flex justify-content-around align-items-center">
+            <h1 class="mb-3 mt-4">Agregar usuario</h1>
+        
+            <a class="btn btn-primary mt-3" href="/friends/">Volver al Inicio</a>
+        </div>
+    
+        <form class="text-start" action="/friends/form/" method="post" name="new_user">
+            
+            <div class="mb-3">
+                <label class="form-label fw-bold" for="first_name">Nombre:</label>
+                <input class="form-control" type="text" id="first_name" name="first_name">
+                <label class="form-label fw-bold" for="last_name">Apellido:</label>
+                <input class="form-control" type="text" id="last_name" name="last_name">
+                <label class="form-label fw-bold" for="occupation">Ocupación:</label>
+                <input class="form-control" type="text" id="occupation" name="occupation">
+            </div>
+    
+            <button class="btn btn-primary" type="submit">Agregar</button>
+    
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}
