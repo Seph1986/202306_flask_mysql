@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %} Detalle Dojo {% endblock %}
+
+
+{% block content %}
+
+<div class="container col-6 mt-4 p-4 bg-warning card bg-opacity-75">
+    <h1 class="mb-4">{{dojo.name}}</h1>
+
+
+    <div class="card">
+        <div class="card-body">
+            {% if ninjas %}
+        
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Edad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ninja in ninjas %}
+                        <tr>
+                            <td>{{ninja.first_name}}</td>
+                            <td>{{ninja.last_name}}</td>
+                            <td>{{ninja.age}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        
+            {% else %}
+        
+                <h4 class="">Dojo sin Ninjas</h4>
+        
+            {% endif %}
+        </div>
+    </div>
+
+    <div>
+        <a href="{{url_for('home')}}" class="btn btn-primary mt-5">
+            <i class="bi bi-house-fill"></i>
+            Inicio
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

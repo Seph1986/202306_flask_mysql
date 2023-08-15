@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %} Dojos y Ninjas {% endblock %}
+
+
+{% block content %}
+
+<div class="container col-8 mt-4 p-4 bg-warning card bg-opacity-75">
+    <div class="card-body">
+        <div class="text-center">
+            <h1>Administración de Dojos</h1>
+        </div>
+    
+        <div class="row">
+            
+            <div class="container col-6">
+                <form action="/dojo/new" method="post">
+                    <div class="mb-3">
+                        <label for="name" class="form-label fs-5 fw-bold">Nuevo Dojo</label>
+                        <input class="form-control form-control-lg" id="name" name="name" type="text" placeholder="Elige un nombre" required>
+                    </div>
+                    <button class="btn btn-primary" type="submit" method="post">Crear Dojo</button>
+                </form>
+                <h5 class="fw-bold mt-5">Nuevo Ninja</h5>
+                <a class="btn btn-primary" href="{{url_for('landing_ninja')}}">Crear Ninja</a>
+            </div>
+            <div class="container col-6" >
+                <div class="mb-3">
+                    <h4 class="fw-bold">Todos los dojos</h4>
+                    <div>
+                        <div class="list-group">
+    
+                            {% for dojo in dojos %}
+    
+                            <a href="{{ url_for('dojo_detail', id=dojo.id)}}" class="list-group-item list-group-item-action fs-5 fw-bold">{{dojo.name}}</a>
+    
+                            {% endfor %}
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
