@@ -18,6 +18,17 @@ class Dojo:
     @classmethod
     def new_dojo(cls,data):
 
+        """
+        Agrega un nuevo dojo a la base de datos.
+
+        Parámetros:
+            - cls: La clase que invoca este método.
+            - data: Un diccionario con los datos del dojo a agregar. Se espera
+              que tenga una clave "name" que corresponda al nombre del dojo.
+
+        No hay valor de retorno.
+        """
+
         query = "INSERT INTO dojos(name) VALUES (%(name)s);"
         
         connectToMySQL("ninjas_dojos").query_db(query, data)
@@ -25,6 +36,17 @@ class Dojo:
     
     @classmethod
     def get_all(cls):
+
+        """
+        Obtiene todos los dojos almacenados en la base de datos.
+
+        Parámetros:
+            - cls: La clase que invoca este método.
+
+        Valor de retorno:
+            - Una lista de objetos tipo Dojo, que representan los dojos 
+            obtenidos de la base de datos.
+        """
 
         dojos = []
 
@@ -42,6 +64,19 @@ class Dojo:
     
     @classmethod
     def get_one(cls, data):
+
+        """
+        Obtiene un único dojo junto con todos sus ninjas de la base de datos,
+          dado un ID de dojo.
+
+        Parámetros:
+            - cls: La clase que invoca este método.
+            - data: Un diccionario que contiene el ID del dojo a obtener.
+
+        Valor de retorno:
+            - Un objeto tipo Dojo, que representa el dojo obtenido de la base
+              de datos, incluidos todos los ninjas asociados.
+        """
 
         query = """SELECT * FROM dojos LEFT JOIN ninjas ON dojos.id = 
         ninjas.dojo_id WHERE dojos.id = %(id)s"""

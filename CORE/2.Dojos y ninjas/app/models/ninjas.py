@@ -21,6 +21,9 @@ class Ninja:
     @classmethod
     def new_ninja(cls,data):
 
+        """
+        """
+
         query = """INSERT INTO ninjas(first_name,last_name,age,dojo_id)
         VALUES (%(first_name)s, %(last_name)s, %(age)s, %(dojo_id)s)"""
 
@@ -28,6 +31,19 @@ class Ninja:
 
     @classmethod
     def ninja_by_dojo(cls, data):
+
+        """
+        Obtiene una lista de todos los ninjas pertenecientes a un dojo 
+        específico, dado un ID de dojo.
+
+        Parámetros:
+            - cls: La clase que invoca este método.
+            - data: Un diccionario que contiene el ID del dojo.
+
+        Valor de retorno:
+            - Una lista de objetos tipo Ninja, que representan los ninjas 
+            asociados al dojo.
+        """
 
         ninjas = []
 
