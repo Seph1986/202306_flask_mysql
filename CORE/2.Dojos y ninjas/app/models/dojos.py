@@ -1,4 +1,5 @@
 from app.config.mysqlconnection import connectToMySQL
+from app.models.ninjas import Ninja
 
 class Dojo:
 
@@ -10,8 +11,8 @@ class Dojo:
         self.ninjas = []
 
     def __str__(self) -> str:
-        f"""Atributos de Dojo id = {self.id} name = {self.name} created_at:
-        {self.created_at} y updated_at = {self.updated_at}""" 
+       return f"""Atributos de Dojo id = {self.id} name = {self.name} created_at:
+       {self.created_at}, updated_at = {self.updated_at} y {self.ninjas}""" 
 
 
     @classmethod
@@ -42,8 +43,30 @@ class Dojo:
     @classmethod
     def get_one(cls, data):
 
-        query = "SELECT * FROM dojos WHERE id = %(id)s"
+        query = """SELECT * FROM dojos LEFT JOIN ninjas ON dojos.id = 
+        ninjas.dojo_id WHERE dojos.id = %(id)s"""
 
-        result = connectToMySQL("ninjas_dojos").query_db(query, data)
+        result = connectToMySQL("ninjas_dojos").query_db(query,data)
+        dojo = cls(result[0])
 
-        return cls(result[0])
+        all_ninjas = []
+        for row_db in result:
+            print("--Fila",row_db)
+
+            ninja_data = {
+                "id" : row_db["ninjas.id"],
+                "first_name" : row_db["first_name"],
+                "last_name" : row_db["last_name"],
+                "age" : row_db["age"],
+                "created_at" : row_db["ninjas.created_at"],
+                "updated_at" : row_db["ninjas.updated_at"],
+                "dojo_id" : row_db["id"]
+            }
+
+            ninja_instance = Ninja(ninja_data)
+            all_ninjas.append(ninja_instance)
+
+        dojo.ninjas = all_ninjas
+        print(dojo)
+
+        return dojo

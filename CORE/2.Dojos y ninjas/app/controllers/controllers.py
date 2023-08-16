@@ -44,12 +44,9 @@ def dojo_detail(id):
     }
     
     dojo = Dojo.get_one(data)
-    ninjas = Ninja.ninja_by_dojo(data)
+    
 
-    for ninja in ninjas:
-        print(ninja.first_name)
-
-    return render_template("dojos_ninjas/dojos/detail.html", dojo = dojo, ninjas = ninjas)
+    return render_template("dojos_ninjas/dojos/detail.html", dojo = dojo)
 
 
 @app.route("/ninja/")
