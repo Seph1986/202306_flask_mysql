@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+
+{% block title %} Author Info {% endblock %}
+
+{% block content %}
+
+<div class="container col-8 mt-4 p-4 bg-info card bg-opacity-50 shadow">
+    <div class="row">
+
+        <div class="col-6">
+            <div class="mb-5">
+                <h2>{{author.name}}</h2>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h4><u>Mis favoritos</u></h4>
+                    {% if author.favorite_books|length > 0 %}
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Titulo</th>
+                                    <th>Numero de paginas</th>
+                                </tr>
+                            </thead>
+                        {% for book in author.favorite_books %}
+                            <tbody>
+                                <tr>
+                                    <td>{{book.title}}</td>
+                                    <td>{{book.num_of_pages}}</td>
+                                </tr>
+                            </tbody>
+                        {% endfor %}
+                        </table>
+                    {% else %}
+                        <p>Sin libros favoritos</p>
+                    {% endif %}
+                </div>
+            </div>
+            <a href="{{url_for('authors')}}" class="btn btn-primary" type="submit">
+                <i class="bi bi-house-fill"></i>
+                Incio
+            </a>
+        </div>
+
+        <div class="col-6">
+            <div class="mb-5">
+                <h2>Agregar libro favorito</h2>
+            </div>
+            <form action="{{ url_for('add_favorite_book', id = author.id)}}" method="post">
+                <div class="mb-3">
+                  <label class="form-check-label" for="books">Seleccionar Libro</label>
+                  <select name="book_id" id="books" class="form-select">
+                    {% if books|length > 0 %}
+                        {% for book in books %}
+                        <option value="{{book.id}}">{{book.title}}</option>
+                        {% endfor %}
+                    {% else %}
+                        <option value="">No books</option>
+                    {% endif %}
+                </select>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i>
+                    Agregar
+                </button>
+              </form>
+              
+        </div>
+    </div>
+</div>
+
+{% endblock %}

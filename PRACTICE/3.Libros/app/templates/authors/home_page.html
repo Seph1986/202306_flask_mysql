@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+
+<div class="container col-8 mt-4 p-4 bg-info card bg-opacity-50 shadow">
+    <div class="row">
+
+        <div class="col-6">
+            <div class="col-8">
+                <div class="mb-3">
+                    <h2>Nuevo Autor</h2>
+                </div>
+                <form action="{{url_for('add_author')}}" method="post">
+                    <div class="mb-3">
+                        <label class="form-label" for="name">Nombre:</label>
+                        <input class="form-control" type="text" id="name" name="name" required>
+                    </div>
+                    <button class="btn btn-primary" type="submit">
+                        <i class="bi bi-plus-circle"></i>
+                        Crear Autor
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="mb-5">
+                <h2>Todos los autores</h2>
+            </div>
+            <ul class="list-group mb-3  ">
+                {% for author in authors %}
+
+                <a href="{{url_for('author_info', id=author.id)}}" class="list-group-item list-group-item-action">{{author.name}}</a>
+
+                {% endfor %}
+            </ul>
+
+            <a class="btn btn-primary" href="{{url_for('books_landing')}}">
+                <i class="bi bi-bookmark-fill"></i>
+                Ver Libros
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
