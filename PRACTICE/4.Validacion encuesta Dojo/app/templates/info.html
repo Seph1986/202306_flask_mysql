@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3 class="text-warning mb-4">Dojo Survey</h3>
+
+<h4 class="text-white">Name:</h4>
+<p class="text-white">{{session["user_name"]}}</p>
+<h4 class="text-white">Dojo Location:</h4>
+<p class="text-white">{{session["location"]}}</p>
+<h4 class="text-white">Favorite Language:</h4>
+<p class="text-white">{{session["language"]}}</p>
+<h4 class="text-white">Comment:</h4>
+<p class="text-white">{{session["comment"]}}</p>
+
+  <form action="/reset/">
+    <button type="submit" class="btn btn-warning fw-bold text-white mt-3">Go Back</button>
+  </form>
+{% endblock %}
