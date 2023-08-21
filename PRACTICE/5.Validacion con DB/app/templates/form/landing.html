@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %} Email Form {% endblock %}
+
+
+{% block content %}
+<div class="container bg-secondary-subtle col-6 p-4 mt-5">
+
+    <div class="row col-10 p-4">
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %} 
+                    <p class="text-danger fw-bold">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('add_email') }}" method="post">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address:</label>
+              <input type="text" class="email" name="email" id="email">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+
+</div>
+
+{% endblock %}
