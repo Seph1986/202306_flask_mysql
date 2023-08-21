@@ -44,3 +44,14 @@ def email_data():
     
 
     return render_template("form/data.html", emails = emails)
+
+@app.route("/delete/<int:id>")
+def delete_user(id):
+
+    data = {
+        "id": id
+    }
+
+    Email.delete_address(data)
+
+    return redirect(url_for("email_data"))

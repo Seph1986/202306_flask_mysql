@@ -14,6 +14,7 @@ EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 class Email:
 
     def __init__(self, data: dict) -> None:
+        self.id = data["id"]
         self.email_adress = data["email"]
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
@@ -47,6 +48,14 @@ class Email:
             all_adresses.append(cls(adress))
 
         return all_adresses
+    
+
+    @classmethod
+    def delete_address(cls, data):
+
+        query = "DELETE FROM users_emails WHERE id = %(id)s"
+
+        connect_to_my_sql("emails").query_db(query,data)
 
 
     @staticmethod
@@ -66,3 +75,5 @@ class Email:
                 flash("Email already exist","warning")
 
         return validation
+
+    
