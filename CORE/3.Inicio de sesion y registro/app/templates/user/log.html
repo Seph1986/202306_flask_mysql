@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}User{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+
+            {% include "includes/message.html" %}
+
+            <div class="container mt-4">
+                <h1>User Loged</h1>
+
+                <h3><u>Email:</u> {{session["user"].email}}</h3>
+                <h3><u>First Name:</u> {{session["user"].first_name}}</h3>
+                <h3><u>Last Name:</u> {{session["user"].last_name}}</h3>
+
+                <a class="btn btn-info" href="{{url_for('log_out')}}">Log Out</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

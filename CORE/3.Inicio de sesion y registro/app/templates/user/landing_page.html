@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Log/Register User{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row mt-4 align-items-start">
+
+        {% include "includes/message.html" %}
+
+        <div class="col-5 card m-4">
+            <div class="card-body">
+                <h3>Register</h3>
+
+                <form action="{{url_for('create_user')}}" method="post">
+                    <div class="mb-3">
+                        <label for="first_name" class="form-label">First Name:</label>
+                        <input type="text" class="form-control" id="first_name" name="first_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="last_name" class="form-label">Last Name:</label>
+                        <input type="text" class="form-control" id="last_name" name="last_name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="confitm_password" class="form-label">Confirm Password:</label>
+                        <input type="password" class="form-control" id="confitm_password" name="confirm_password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-5 card m-4">
+            <div class="card-body">
+                <h3>Log In</h3>
+
+                <form action="{{ url_for('check_if_exist') }}" method="post">
+                    <div class="mb-3">
+                        <label for="email-log" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="email_log" name="email_log">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password_log" class="form-label">Password:</label>
+                        <input type="password" class="form-control" id="password_log" name="password_log">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
