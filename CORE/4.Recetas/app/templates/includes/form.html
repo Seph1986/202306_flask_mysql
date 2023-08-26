@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-8">
+        <div class="mb-3 col-6">
+            <label for="recipe_name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="recipe_name" name="name" required>
+        </div>
+        <div class="mb-3 col-10">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" id="description" name="description" required>
+        </div>
+        <div class="mb-3 col-10">
+            <label for="intruction" class="form-label">Instruction</label>
+            <textarea type="text" class="form-control" id="intruction" name="instruction" required></textarea>
+        </div>
+    </div>
+    <div class="col-4">
+
+        <label for="date_cooked" class="form-label">Date Cooked/Made:</label>
+        <input class="d-block" type="date" id="date_cooked" name="date_cooked">
+
+        <h5 class="mt-5">Under 30 minutes ?</h5>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="under_30" id="30_yes" value="Yes">
+            <label class="form-check-label" for="30_yes">Yes</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="under_30" id="30_no" value="No" checked>
+            <label class="form-check-label" for="30_no">No</label>
+        </div>
+        <div>
+            <input type="hidden" name="id" value="{{ session['user'].id }}">
+        </div>
+    </div>
+</div>

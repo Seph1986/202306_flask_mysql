@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}User{% endblock %}
+
+{% block navbar %}
+
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <li class="nav-item">
+        <a class="nav-link active ms-2 btn btn-info" aria-current="page" href="{{ url_for('log_page') }}">Back to
+            recipes</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active ms-2 btn btn-info" aria-current="page" href="{{url_for('log_out')}}">Logout</a>
+    </li>
+
+</ul>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container col-8">
+    <div class="row">
+        <div class="col-12">
+
+            <div class="container mt-4">
+
+                <div class="row">
+                    <h1>Edit Recipe!</h1>
+
+                    {% include "includes/message.html" %}
+                    
+                    <div class="row 10">
+                        <form action="{{ url_for('process_edit') }}" method="post">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="mb-3 col-6">
+                                        <label for="recipe_name" class="form-label">Name</label>
+                                        <input type="text" class="form-control" id="recipe_name" name="name" value="{{recipe['name']}}" required>
+                                    </div>
+                                    <div class="mb-3 col-10">
+                                        <label for="description" class="form-label">Description</label>
+                                        <input type="text" class="form-control" id="description" name="description"
+                                            value="{{recipe['description']}}" required>
+                                    </div>
+                                    <div class="mb-3 col-10">
+                                        <label for="intruction" class="form-label">Instruction</label>
+                                        <textarea type="text" class="form-control" id="intruction" name="instruction"
+                                            required>{{recipe['instruction']}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+
+                                    <label for="date_cooked" class="form-label">Date Cooked/Made:</label>
+                                    <input class="d-block" type="date" id="date_cooked" name="date_cooked">
+
+                                    <h5 class="mt-5">Under 30 minutes ?</h5>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="under_30" id="30_yes"
+                                            value="Yes">
+                                        <label class="form-check-label" for="30_yes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="under_30" id="30_no"
+                                            value="No" checked>
+                                        <label class="form-check-label" for="30_no">No</label>
+                                    </div>
+                                    <div>
+                                        <input type="hidden" name="id" value="{{ session['user'].id }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Success</button>
+                        </form>
+                    </div>
+                </div>
+
+                {% endblock %}

@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}User{% endblock %}
+
+{% block navbar %}
+
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+    <li class="nav-item">
+        <a class="nav-link active ms-2 btn btn-info" aria-current="page" href="{{ url_for('show_add_form') }}">
+            <i class="bi bi-plus-circle"></i>
+            Create</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active ms-2 btn btn-info" aria-current="page" href="{{url_for('log_out')}}">Logout</a>
+    </li>
+
+</ul>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container col-8">
+    <div class="row">
+        <div class="col-12">
+
+            {% include "includes/message.html" %}
+
+            <div class="container mt-4">
+
+                <div class="row">
+                    <h1>Welcome, {{session["user"].first_name}}</h1>
+
+                    <h6 class="mt-4">All posted recipes:</h6>
+                </div>
+
+                <div class="row 10">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Recipe Name</th>
+                                <th scope="col">Under 30min</th>
+                                <th scope="col">Posted By</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for recipe in recipes %}
+                            <tr>
+                                <td>{{recipe["name"]}}</td>
+                                <td>{{recipe["under_30"]}}</td>
+                                <td>{{recipe["user_instance"]["first_name"]}}</td>
+
+                                {% if session["user"].id == recipe["user_id"]%}
+                                <td><a href="{{ url_for('recipe_details', id = recipe['id']) }}">view recipe</a> |
+                                <a href="{{ url_for('recipe_edit', id = recipe['id']) }}">edit</a> |
+                                <a href="{{ url_for('recipe_delte', id = recipe['id']) }}">delete</a></td>
+                                {% else %}
+                                <td><a href="{{ url_for('recipe_details', id = recipe['id']) }}">view recipe</a></td>
+                                {% endif %}
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
