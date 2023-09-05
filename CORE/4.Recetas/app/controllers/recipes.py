@@ -88,7 +88,7 @@ def process_edit():
         "description": recipe_data["description"],
         "under_30": recipe_data["under_30"],
         "instruction": recipe_data["instruction"],
-        "date_cooked": recipe_data["date_cooked"],
+        "date_cooked": str(recipe_data["date_cooked"]),
         "email": session["user"]["email"]
     }
 
